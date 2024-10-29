@@ -36,7 +36,7 @@ steps:
     patchVersion: '0'
  
 - task: NuGetCommand@2
-  displayName: 'Publish NuGet package'
+  displayName: 'Publish NuGet package $(System.TeamProject)'
   inputs:
     command: push
     feedPublish: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models'
