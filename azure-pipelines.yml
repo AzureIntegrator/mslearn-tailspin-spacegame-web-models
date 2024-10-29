@@ -29,7 +29,7 @@ steps:
   inputs:
     command: 'pack'
     projects: '**/*.csproj'
-    arguments: '--no-build --configuration $(buildConfiguration)'
+    arguments: '--no-build --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)'
     versioningScheme: byPrereleaseNumber
     majorVersion: '1'
     minorVersion: '0'
@@ -39,7 +39,7 @@ steps:
   displayName: 'Publish NuGet package'
   inputs:
     command: 'push'
-    packagesToPush: '**/*.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '$(System.TeamProject)/Tailspin.SpaceGame.Web.Models'
   condition: succeeded()
